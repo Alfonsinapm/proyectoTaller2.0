@@ -1,0 +1,32 @@
+.dashboard-title{
+    color: white;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    padding: 50px;
+}
+
+.dashContainer{
+    height: 507px;
+}
+
+.minutos{
+    background-color: gray;
+    height: 30px;
+    margin: 10px;
+}
+
+.btnAgregar{
+    width: 100px;
+    height: 35px;
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.lblAgregar{
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+}
