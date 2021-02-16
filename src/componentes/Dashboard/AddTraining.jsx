@@ -8,11 +8,12 @@ const AddTraining = () => {
     return (
         
             <div className="agregar">
-                <label className="lblAgregar" htmlFor="txtAgregar">Agregar:</label>
-                <input type="text" name="txtAgregar" id="txtAgregar" className="minutos" placeholder="Minutos" />
-                <input type="button" value="Agregar" className="btnAgregar" />
-            
+                <label className="lblAgregar" htmlFor="txtMinutos">Agregar minutos:</label>
+                <input type="text" name="txtMinutos" id="txtMinutos" className="minutos" placeholder="Minutos" />
+                <label className="lblAgregar" htmlFor="txtPeso">Agregar peso:</label>
+                <input type="number" name="txtPeso" id="txtPeso" className="peso" placeholder="Peso" />
             <CardsContainer/>
+            <input type="button" value="Agregar" className="btnAgregar" />
             </div>
     )
 }

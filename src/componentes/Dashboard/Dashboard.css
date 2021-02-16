@@ -1,4 +1,4 @@
-.dashboard-title{
+.dashboard-title {
     color: white;
     text-transform: uppercase;
     font-family: 'Montserrat', sans-serif;
@@ -6,33 +6,46 @@
     padding: 50px;
 }
 
-.dashContainer{
-    height: 507px;
+.dashContainer {
+    height: fit-content;
 }
 
-.minutos{
-    background-color: gray;
+.lblAgregar {
+    display: block;
+}
+
+.minutos, .peso {
+    color: black;
     height: 30px;
     margin: 10px;
 }
 
-.btnAgregar{
+.btnAgregar {
     width: 100px;
     height: 35px;
     font-size: 20px;
     font-family: 'Montserrat', sans-serif;
 }
 
-
-.lblAgregar{
+.lblAgregar {
     font-family: 'Montserrat', sans-serif;
     color: white;
     font-size: 20px;
     padding: 20px;
 }
 
-.checkbox,.checkLabel{
+.checkbox, .checkLabel {
     color: white;
 }
 
-.prueba{color:aqua}
+::placeholder{
+    color: black;
+}
+
+.tarjetas{
+    padding: 20px;
+}
+
+.agregar{
+    margin: 20px;
+}

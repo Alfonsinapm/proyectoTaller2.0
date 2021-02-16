@@ -7,7 +7,7 @@ const CardsContainer = () => {
 
     const tokenL = useSelector(state => state.tLogin);
     const [trainings, setTrainings] = useState([])
-    //const trainings = useSelector(state => state.trainigs);
+    
 
     const getTrainings = () => {
         var myHeaders = new Headers();
