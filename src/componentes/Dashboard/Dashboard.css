@@ -30,3 +30,9 @@
     font-size: 20px;
     padding: 20px;
 }
+
+.checkbox,.checkLabel{
+    color: white;
+}
+
+.prueba{color:aqua}

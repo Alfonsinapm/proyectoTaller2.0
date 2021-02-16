@@ -1,6 +1,6 @@
+import './Dashboard.css'
 
-
-const Tarjeta = (nombre) => {
+const TCard = ({nombre}) => {
     return (
         <div className="tarjeta">
             <input type="checkbox" id="list01" className="checkbox" />
@@ -9,4 +9,4 @@ const Tarjeta = (nombre) => {
     )
 }
 
-export default Tarjeta
+export default TCard

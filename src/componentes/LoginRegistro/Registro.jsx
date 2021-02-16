@@ -29,9 +29,9 @@ const Registro = () => {
     const performRegistro = (usuIng,contraIng,alturaIng) => {
         let bool;
         let raw = JSON.stringify({
-            "username": `${usuIng}`,
-            "password": `${contraIng}`,
-            "height": `${alturaIng}`
+            "username": "holaa",
+            "password": "holaa",
+            "height": 5
         });
 
         let requestOptions = {
@@ -55,13 +55,7 @@ const Registro = () => {
 
             return bool;
     }
-
-
-    // useEffect(() => {
-    //    const ejecutar= performRegistro
-    // }, [])
-    
-    
+  
     return (
         <div>
             <h1 className="registro-title">Registro</h1>

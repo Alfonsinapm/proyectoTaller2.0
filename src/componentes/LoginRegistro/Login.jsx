@@ -20,8 +20,8 @@ const Login = () => {
         myHeaders.append("Authorization", tokenR);
         console.log(tokenR)
         var raw = JSON.stringify({
-            "username": "jj",
-            "password": "jj"
+            "username": "hola",
+            "password": "hola"
         });
         var requestOptions = {
             method: 'POST',
