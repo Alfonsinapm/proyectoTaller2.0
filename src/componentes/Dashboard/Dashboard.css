@@ -42,9 +42,11 @@
 .checkbox, .checkLabel {
     color: white;
 }
-
-
-
+.checkLabel{
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Bebas Neue', cursive;
+    letter-spacing: 2px;
+}
 .tarjetas{
     padding: 20px;
 }
