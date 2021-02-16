@@ -18,7 +18,7 @@ const Registro = () => {
         let usu = uIngresado.current.value
         let contra = contIngresada.current.value
         let altura = altIngresada.current.value
-        if (performRegistro(usu,contra,altura)) {
+        if (performRegistro(usu,contra,altura)!==undefined) {
             console.log(performRegistro(usu,contra,altura))
             history.push('/login');
         } else {
@@ -29,9 +29,9 @@ const Registro = () => {
     const performRegistro = (usuIng,contraIng,alturaIng) => {
         let bool;
         let raw = JSON.stringify({
-            "username": "holaa",
-            "password": "holaa",
-            "height": 5
+            "username": "test@test",
+            "password": "aaa",
+            "height": 68
         });
 
         let requestOptions = {
@@ -45,6 +45,7 @@ const Registro = () => {
             .then(result => {
                 console.log(result)
                 dispatch = ({ type: 'agregar-tokenR', payload: result.user.token })
+                dispatch = ({ type: 'agregar-userId', payload: result.user.id })
                 console.log(dispatch)
                 bool= true;
             })
@@ -54,6 +55,7 @@ const Registro = () => {
             });
 
             return bool;
+        
     }
   
     return (

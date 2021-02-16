@@ -11,7 +11,7 @@ const CardsContainer = () => {
 
     const getTrainings = () => {
         var myHeaders = new Headers();
-        myHeaders.append("Authorization", "371038aefd1bf33f6bc375ea1b8f7309");
+        myHeaders.append("Authorization", "c16bddb82725371dd8f8c4a305eb13ed");
 
         var requestOptions = {
             method: 'GET',
@@ -24,7 +24,7 @@ const CardsContainer = () => {
             .then(result => {
                 let arrayT = []
                 result.forEach(r => {
-                    arrayT.push({ id: r.id, name: r.name })
+                    arrayT.push({ id: r.id, name: r.name, completado:false })
                 })
                 setTrainings(arrayT)
             })
@@ -42,6 +42,7 @@ return (
             <TCard
                 key={t.id}
                 nombre={t.name}
+                completado = {t.completado}
             />)
         )
         }

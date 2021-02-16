@@ -17,17 +17,16 @@ const Login = () => {
     const performLogin = (usuI, contraI) => {
         let bool;
         var myHeaders = new Headers();
-        myHeaders.append("Authorization", tokenR);
-        console.log(tokenR)
+        myHeaders.append("Authorization", "4f58a93277106f859b6011e5ef327640");
+        
         var raw = JSON.stringify({
-            "username": "hola",
-            "password": "hola"
+            "username": "test@test",
+            "password": "aaa"
         });
         var requestOptions = {
             method: 'POST',
             headers: myHeaders,
             body: raw,
-
             redirect: 'follow'
         };
         fetch("https://trainning-rest-api.herokuapp.com/v1/users/login", requestOptions)
@@ -43,6 +42,7 @@ const Login = () => {
                 console.log('error', error)
                 bool = false;
             });
+            console.log(bool)
         return bool;
     }
 
@@ -51,7 +51,7 @@ const Login = () => {
         let usu = uLogin.current.value;
         let contra = contLogin.current.value;
         if (performLogin(usu, contra)) {
-            console.log(performLogin(usu, contra))
+            console.log(performLogin(usu, contra)!==undefined)
             history.push('/dashboard');
         } else {
             setMsjErrorLog(true)

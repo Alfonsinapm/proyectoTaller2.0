@@ -1,8 +1,9 @@
 const initialState = {
-    trainigs:[],
+    trainigs: [],
     cantidad: 0,
     tRegistro: "",
-    tLogin: ""
+    tLogin: "",
+    userId: 0
 }
 
 const reducer = (state = initialState, action) => {
@@ -13,14 +14,19 @@ const reducer = (state = initialState, action) => {
                 trainings: [...state.trainigs, action.payload]
             }
         case 'agregar-tokenR':
-            return{
+            return {
                 ...state,
                 tRegistro: action.payload
             }
         case 'agregar-tokenL':
-            return{
+            return {
                 ...state,
-                tLogin:action.payload
+                tLogin: action.payload
+            }
+        case 'agregar-userId':
+            return {
+                ...state,
+                userId: action.payload
             }
         default: return state;
     }
