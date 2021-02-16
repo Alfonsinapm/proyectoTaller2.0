@@ -3,7 +3,7 @@
     text-transform: uppercase;
     font-family: 'Montserrat', sans-serif;
     text-align: center;
-    padding: 50px;
+    padding: 20px;
 }
 
 .dashContainer {
@@ -12,12 +12,17 @@
 
 .lblAgregar {
     display: block;
+    
 }
 
 .minutos, .peso {
-    color: black;
+    
     height: 30px;
     margin: 10px;
+    background-color: #2f3e47;
+    border-top: 1px solid transparent;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
 }
 
 .btnAgregar {
@@ -31,16 +36,14 @@
     font-family: 'Montserrat', sans-serif;
     color: white;
     font-size: 20px;
-    padding: 20px;
+    padding: 10px;
 }
 
 .checkbox, .checkLabel {
     color: white;
 }
 
-::placeholder{
-    color: black;
-}
+
 
 .tarjetas{
     padding: 20px;
