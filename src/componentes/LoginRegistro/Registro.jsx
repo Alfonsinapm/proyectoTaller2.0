@@ -13,51 +13,41 @@ const Registro = () => {
     const altIngresada = useRef(null)
 
     //onSubmit
+    
     const manejoRegistro = (e) => {
         e.preventDefault();
         let usu = uIngresado.current.value
         let contra = contIngresada.current.value
         let altura = altIngresada.current.value
-        if (performRegistro(usu,contra,altura)!==undefined) {
-            console.log(performRegistro(usu,contra,altura))
-            history.push('/login');
-        } else {
-            setMsjErrorReg(true)
-        }
-    }
-
-    const performRegistro = (usuIng,contraIng,alturaIng) => {
-        let bool;
-        let raw = JSON.stringify({
-            "username": "test@test",
-            "password": "aaa",
-            "height": 68
-        });
 
         let requestOptions = {
             method: 'POST',
-            body: raw,
+            body: JSON.stringify({
+                "username":  usu,
+                "password":contra,
+                "height": altura
+            }),
             redirect: 'follow'
         };
 
         fetch('https://trainning-rest-api.herokuapp.com/v1/users/register', requestOptions)
-            .then(response => response.json())
+            .then(response => {response.json()
+            console.log(response)})
             .then(result => {
                 console.log(result)
                 dispatch = ({ type: 'agregar-tokenR', payload: result.user.token })
-                dispatch = ({ type: 'agregar-userId', payload: result.user.id })
                 console.log(dispatch)
-                bool= true;
+                dispatch = ({ type: 'agregar-userId', payload: result.user.id })
+                history.push('/login');
             })
             .catch(error => {
                 console.log('error', error)
-                bool= false;
+                setMsjErrorReg(true)
             });
-
-            return bool;
         
+
     }
-  
+
     return (
         <div>
             <h1 className="registro-title">Registro</h1>

@@ -14,7 +14,7 @@ const AddTraining = () => {
     const postNewT = (minuto,peso,tipo) => {
         let bool;
         var myHeaders = new Headers();
-        myHeaders.append("Authorization", "c16bddb82725371dd8f8c4a305eb13ed");
+        myHeaders.append("Authorization", `${tokenL}`);
         
         var raw = JSON.stringify({
                 "minutes": 15,

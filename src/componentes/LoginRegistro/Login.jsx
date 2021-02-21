@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 const Login = () => {
 
-    const tokenR = useSelector(state => state.tRegistro);
+    const tokenR = "4f58a93277106f859b6011e5ef327640"//useSelector(state => state.tRegistro);
     const history = useHistory();
     const [msjErrorLog, setMsjErrorLog] = useState(false)
     let dispatch = useDispatch()
@@ -14,49 +14,41 @@ const Login = () => {
     const uLogin = useRef(null)
     const contLogin = useRef(null)
 
-    const performLogin = (usuI, contraI) => {
-        let bool;
-        var myHeaders = new Headers();
-        myHeaders.append("Authorization", "4f58a93277106f859b6011e5ef327640");
-        
-        var raw = JSON.stringify({
-            "username": "test@test",
-            "password": "aaa"
-        });
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
-        fetch("https://trainning-rest-api.herokuapp.com/v1/users/login", requestOptions)
-            .then(response => response.json())
-            .then((result) => {
-                console.log(result)
-                dispatch = ({ type: 'agregar-tokenL', payload: result.token })
-                console.log(dispatch)
-                bool = true;
-            }
-            )
-            .catch((error) => {
-                console.log('error', error)
-                bool = false;
-            });
-            console.log(bool)
-        return bool;
-    }
-
     const handleLogin = (e) => {
         e.preventDefault();
         let usu = uLogin.current.value;
         let contra = contLogin.current.value;
-        if (performLogin(usu, contra)) {
-            console.log(performLogin(usu, contra)!==undefined)
-            history.push('/dashboard');
-        } else {
-            setMsjErrorLog(true)
-        }
+        
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization",tokenR);
+        // "username": "test@test",
+        // "password": "aaa"
+        console.log(tokenR)
+        var raw = {
+            "username": usu,
+            "password": contra
+        };
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: JSON.stringify(raw),
+            redirect: 'follow'
+        };
+        fetch("https://trainning-rest-api.herokuapp.com/v1/users/login", requestOptions)
+            .then(response => response.json() )
+            .then((result) => {
+                console.log(result)
+                dispatch = ({ type: 'agregar-tokenL', payload: result.token })
+                history.push('/dashboard');
+            }
+            )
+            .catch((error) => {
+                console.log('error', error)
+                setMsjErrorLog(true)
+            });
+        
     }
+
 
     return (
         <div>
