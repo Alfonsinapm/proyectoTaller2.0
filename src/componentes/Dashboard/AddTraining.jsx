@@ -7,23 +7,25 @@ const AddTraining = () => {
     
     const tokenL = useSelector(state => state.tLogin);
     const userId = useSelector(state => state.userId);
-    //const [trainings, setTrainings] = useState([])
+    const entrenamientoId = useSelector(state => state.idEntrenamiento);
+    console.log(entrenamientoId)
     const minutoIng = useRef(null)
     const pesoIng = useRef(null)
-    //const tipoT = useRef(null)
+    
+    
 
     const handleAddT = (e) => {
         e.preventDefault();
         let minuto = minutoIng.current.value
         let peso = pesoIng.current.value
-        //let tipoT = tipoT.current.value
+        
         var myHeaders = new Headers();
-        myHeaders.append("Authorization", "8c78d94def4a029c7620b4aed6462b93");
+        myHeaders.append("Authorization", String(tokenL));
         
         var raw = {
                 "minutes": Number(minuto),
-                "trainning_type": Number(31),
-                "user_id": Number(2181),
+                "trainning_type": Number(entrenamientoId),
+                "user_id": Number(userId),
                 "weight": Number(peso)
         };
         var requestOptions = {
@@ -54,9 +56,9 @@ const AddTraining = () => {
         
             <form className="agregar" onSubmit={handleAddT} >
                 <label className="lblAgregar" htmlFor="txtMinutos">Agregar minutos:</label>
-                <input type="number" name="txtMinutos" id="txtMinutos" ref={minutoIng} className="minutos"/>
+                <input type="number" name="txtMinutos" id="txtMinutos" ref={minutoIng} className="minutos" required/>
                 <label className="lblAgregar" htmlFor="txtPeso">Agregar peso:</label>
-                <input type="number" name="txtPeso" id="txtPeso" ref={pesoIng} className="peso" />
+                <input type="number" name="txtPeso" id="txtPeso" ref={pesoIng} className="peso" required/>
             <CardsContainer/>
             <input type="submit" value="Agregar" className="btnAgregar" />
             </form>

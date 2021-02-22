@@ -18,12 +18,10 @@ const Login = () => {
         e.preventDefault();
         let usu = uLogin.current.value;
         let contra = contLogin.current.value;
-        
-        var myHeaders = new Headers();
-        myHeaders.append("Authorization",tokenR);
-        // "username": "test@test",
-        // "password": "aaa"
 
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", String(tokenR));
+        console.log(tokenR)
         var raw = {
             "username": usu,
             "password": contra
@@ -35,19 +33,22 @@ const Login = () => {
             redirect: 'follow'
         };
         fetch("https://trainning-rest-api.herokuapp.com/v1/users/login", requestOptions)
-            .then(response => response.json() )
-            .then((result) => {
+            .then(response => response.json())
+            //console.log(response)})
+            .then(result => {
                 console.log(result)
-                dispatch = ({ type: 'agregar-tokenL', payload: result.token })
-                
-                console.log(dispatch)
+                if (result.id !== undefined) {
+                dispatch({ type: 'agregar-tokenL', payload: result.token })
                 history.push('/dashboard');
+                }else{
+                    setMsjErrorLog(true)
+                }
             }
             )
             .catch((error) => {
                 console.log('error', error)
-                setMsjErrorLog(true)
-            });
+                
+            })
     }
 
 

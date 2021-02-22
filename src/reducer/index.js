@@ -2,30 +2,32 @@ const initialState = {
     trainigs: [],
     tRegistro: "",
     tLogin: "",
-    userId: 5
+    userId: 0,
+    idEntrenamiento:0
 }
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'agregar-training':
+        case 'AGREGAR-TRAINING':
             return {
                 ...state,
                 trainings: [...state.trainigs, action.payload]
             }
         case 'agregar-tokenR':
             return {
-                ...state,
-                tRegistro: action.payload
+                ...state, tRegistro: action.payload
             }
         case 'agregar-tokenL':
             return {
-                ...state,
-                tLogin: action.payload
+                ...state, tLogin: action.payload
             }
         case 'agregar-userId':
             return {
-                ...state,
-                userId: state.userId+ action.payload
+                ...state, userId: action.payload
+            }
+        case 'agregar-entrenamientoId':
+            return {
+                ...state, idEntrenamiento: action.payload
             }
         default: return state;
     }

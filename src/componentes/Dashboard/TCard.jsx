@@ -1,24 +1,25 @@
 import './Dashboard.css'
+import { useDispatch,  } from 'react-redux'
+import {useEffect} from 'react'
 
-const TCard = ({nombre,completado,id}) => {
+const TCard = ({ nombre, id,completado} ) => {
 
+    let dispatch = useDispatch()
 
-const cambiar = (e)=>{
-    completado=!completado
-    console.log(completado,id)
-
-}
+    const setTid = ()=>{
+        dispatch({ type: 'agregar-entrenamientoId', payload: id })
+    }
 
     return (
         <div className="tarjeta">
-            <input 
-            type="checkbox" 
-            id={id} 
-            className="checkbox" 
-            onChange={cambiar} 
-            chequed={completado.toString()} 
-           />
-            <label className="checkLabel" htmlFor="list01">{nombre}</label>
+            <input
+                type="checkbox"
+                id={id}
+                className="checkbox"
+                onClick={setTid}
+                chequed={completado.toString()}
+            />
+            <label className="checkLabel" htmlFor={id}>{nombre}</label>
 
         </div>
     )

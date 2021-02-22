@@ -13,18 +13,18 @@ const Registro = () => {
     const altIngresada = useRef(null)
 
     //onSubmit
-    
+
     const manejoRegistro = (e) => {
         e.preventDefault();
         let usu = uIngresado.current.value
         let contra = contIngresada.current.value
         let altura = altIngresada.current.value
-console.log(usu, contra, altura);
+        console.log(usu, contra, altura);
         let requestOptions = {
             method: 'POST',
             body: JSON.stringify({
-                "username":  usu,
-                "password":contra,
+                "username": usu,
+                "password": contra,
                 "height": Number(altura)
             }),
             redirect: 'follow'
@@ -34,16 +34,20 @@ console.log(usu, contra, altura);
             .then(response => response.json())
             .then(result => {
                 console.log(result)
-                dispatch = ({ type: 'agregar-tokenR', payload: result.user.token })
-                console.log(dispatch)
-                dispatch = ({ type: 'agregar-userId', payload: result.user.id })
-                history.push('/login');
+                if (result.status === 200) {
+                    dispatch({ type: 'agregar-tokenR', payload: result.user.token })
+                    dispatch({ type: 'agregar-userId', payload: result.user.id })
+                    history.push('/login');
+                }
+                else {
+                    setMsjErrorReg(true)
+                }
             })
             .catch(error => {
                 console.log('error', error)
-                setMsjErrorReg(true)
+
             });
-        
+
 
     }
 
@@ -53,7 +57,7 @@ console.log(usu, contra, altura);
 
             <div className="form-container">
                 <form onSubmit={manejoRegistro} className="registro-form">
-                    <input type="text" className="registro-input" ref={uIngresado} placeholder="Usuario" required />
+                    <input type="email" className="registro-input" ref={uIngresado} placeholder="Usuario" required />
                     <input type="text" className="registro-input" ref={contIngresada} placeholder="Contraseña" required />
                     <input type="number" className="registro-input" ref={altIngresada} placeholder="Altura" />
                     <input type="submit" className="btn-registro-login" value="registrarme" required />

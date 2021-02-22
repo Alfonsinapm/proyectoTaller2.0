@@ -5,8 +5,9 @@ import TCard from './TCard'
 
 const CardsContainer = () => {
 
-    const tokenL = "8c78d94def4a029c7620b4aed6462b93"// useSelector(state => state.tLogin);//
+    const tokenL =  useSelector(state => state.tLogin);//
     const [trainings, setTrainings] = useState([])
+    
     
 
     const getTrainings = () => {
@@ -25,7 +26,7 @@ const CardsContainer = () => {
                 console.log(result)
                 let arrayT = []
                 result.forEach(r => {
-                    arrayT.push( {id: r.id, name: r.name, completado:true} )
+                    arrayT.push( {id: r.id, name: r.name, completado:true,  calories_per_minute:r.calories_per_minute} )
                 })
                 setTrainings(arrayT)
             })
@@ -34,7 +35,7 @@ const CardsContainer = () => {
 
 useEffect(() => {
     getTrainings()
-}, [])
+}, [TCard])
 
 
 return (
@@ -43,8 +44,9 @@ return (
             <TCard
                 key={t.id}
                 nombre={t.name}
-                completado = {t.completado}
                 id={t.id}
+                completado={t.completado}
+                
             />)
         )
         }
