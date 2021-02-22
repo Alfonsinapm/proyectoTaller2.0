@@ -19,20 +19,19 @@ const Registro = () => {
         let usu = uIngresado.current.value
         let contra = contIngresada.current.value
         let altura = altIngresada.current.value
-
+console.log(usu, contra, altura);
         let requestOptions = {
             method: 'POST',
             body: JSON.stringify({
                 "username":  usu,
                 "password":contra,
-                "height": altura
+                "height": Number(altura)
             }),
             redirect: 'follow'
         };
 
         fetch('https://trainning-rest-api.herokuapp.com/v1/users/register', requestOptions)
-            .then(response => {response.json()
-            console.log(response)})
+            .then(response => response.json())
             .then(result => {
                 console.log(result)
                 dispatch = ({ type: 'agregar-tokenR', payload: result.user.token })

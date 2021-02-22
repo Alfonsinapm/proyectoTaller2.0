@@ -5,14 +5,14 @@ import TCard from './TCard'
 
 const CardsContainer = () => {
 
-    const tokenL = useSelector(state => state.tLogin);
+    const tokenL = "8c78d94def4a029c7620b4aed6462b93"// useSelector(state => state.tLogin);//
     const [trainings, setTrainings] = useState([])
     
 
     const getTrainings = () => {
         var myHeaders = new Headers();
-        myHeaders.append("Authorization",  `${tokenL}`);
-
+        myHeaders.append("Authorization", tokenL);
+        
         var requestOptions = {
             method: 'GET',
             headers: myHeaders,
@@ -22,9 +22,10 @@ const CardsContainer = () => {
         fetch("https://trainning-rest-api.herokuapp.com/v1/training-types", requestOptions)
             .then(response => response.json())
             .then(result => {
+                console.log(result)
                 let arrayT = []
                 result.forEach(r => {
-                    arrayT.push({ id: r.id, name: r.name, completado:true })
+                    arrayT.push( {id: r.id, name: r.name, completado:true} )
                 })
                 setTrainings(arrayT)
             })
@@ -33,7 +34,7 @@ const CardsContainer = () => {
 
 useEffect(() => {
     getTrainings()
-}, [TCard])
+}, [])
 
 
 return (

@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 const Login = () => {
 
-    const tokenR = "4f58a93277106f859b6011e5ef327640"//useSelector(state => state.tRegistro);
+    const tokenR = useSelector(state => state.tRegistro);
     const history = useHistory();
     const [msjErrorLog, setMsjErrorLog] = useState(false)
     let dispatch = useDispatch()
@@ -23,7 +23,7 @@ const Login = () => {
         myHeaders.append("Authorization",tokenR);
         // "username": "test@test",
         // "password": "aaa"
-        console.log(tokenR)
+
         var raw = {
             "username": usu,
             "password": contra
@@ -39,6 +39,8 @@ const Login = () => {
             .then((result) => {
                 console.log(result)
                 dispatch = ({ type: 'agregar-tokenL', payload: result.token })
+                
+                console.log(dispatch)
                 history.push('/dashboard');
             }
             )
@@ -46,7 +48,6 @@ const Login = () => {
                 console.log('error', error)
                 setMsjErrorLog(true)
             });
-        
     }
 
 

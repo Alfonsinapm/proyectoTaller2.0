@@ -1,9 +1,8 @@
 const initialState = {
     trainigs: [],
-    cantidad: 0,
     tRegistro: "",
     tLogin: "",
-    userId: 0
+    userId: 5
 }
 
 const reducer = (state = initialState, action) => {
@@ -26,7 +25,7 @@ const reducer = (state = initialState, action) => {
         case 'agregar-userId':
             return {
                 ...state,
-                userId: action.payload
+                userId: state.userId+ action.payload
             }
         default: return state;
     }
