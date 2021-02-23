@@ -1,26 +1,28 @@
 import './Dashboard.css'
-import {useSelector} from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import CardsContainer from './CardsContainer'
-import { useState, useEffect, useRef } from 'react'
+import { useRef } from 'react'
 
 const AddTraining = () => {
     
     const tokenL = useSelector(state => state.tLogin);
     const userId = useSelector(state => state.userId);
     const entrenamientoId = useSelector(state => state.idEntrenamiento);
-    console.log(entrenamientoId)
-    const minutoIng = useRef(null)
-    const pesoIng = useRef(null)
+    let dispatch = useDispatch();
+
+    const minutoIng = useRef(null);
+    const pesoIng = useRef(null);
     
     
 
     const handleAddT = (e) => {
         e.preventDefault();
-        let minuto = minutoIng.current.value
-        let peso = pesoIng.current.value
+        let minuto = minutoIng.current.value;
+        let peso = pesoIng.current.value;
         
         var myHeaders = new Headers();
         myHeaders.append("Authorization", String(tokenL));
+        
         
         var raw = {
                 "minutes": Number(minuto),
@@ -40,11 +42,11 @@ const AddTraining = () => {
             .then((result) => {
                 console.log(result)
                 
+                //dispatch({ type: 'agregar-training', payload: { minutes: minuto, trainning_type: entrenamientoId, user_id: userId, weight:peso, } })
             }
             )
             .catch((error) => {
-                console.log('error', error)
-                
+                console.log('error', error);
             });
             
         

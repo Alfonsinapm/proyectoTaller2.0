@@ -8,7 +8,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'AGREGAR-TRAINING':
+        case 'agregar-training':
             return {
                 ...state,
                 trainings: [...state.trainigs, action.payload]
