@@ -1,6 +1,6 @@
-import TrainingsUser from './TrainingsUser'
-import { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import {IoCloseOutline} from "react-icons/io5";
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 const TrainingsList = () => {
     const [entIngresados, setTrainings] = useState([])
@@ -9,65 +9,30 @@ const TrainingsList = () => {
     const entrenamientos = useSelector(state => state.trainigs);
     let dispatch = useDispatch();
 
-    const getTrainingsId = () => {
-
-        var myHeaders = new Headers();
-        myHeaders.append("Authorization", String(tokenL));
-
-        var requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
-
-        fetch(`https://trainning-rest-api.herokuapp.com/v1/users/${userId}/trainings`, requestOptions)
-            .then(response => response.json())
-            .then(result => {
-                console.log(result)
-                let arrayT = []
-                result.forEach(r => {
-                    arrayT.push({ id: r.id, minutes: r.minutes, trainning_type: r.trainning_type, user_id: r.user_id, weight: r.weight, })
-                    
-                    // dispatch( { type: 'agregar-training',  
-                    // payload: {
-                    //     id: r.id, 
-                    //     minutes: r.minutes, 
-                    //     trainning_type: r.trainning_type, 
-                    //     user_id: r.user_id, 
-                    //     weight: r.weight,  } })
-                })
-                
-                setTrainings(arrayT)
-                dispatch({ type: 'agregar-training', payload: { entIngresados}})
-            })
-            .catch(error => console.log('error', error));
-    }
-
-    useEffect(() => {
-        getTrainingsId()
-    }, [entrenamientos])
+    
 
     return (
         <div>
             <div className="tarjetas">
                 {
-                    entIngresados.length > 0 ?
-                    entIngresados.map(t => (
-                            <TrainingsUser
-                                key={t.id}
-                                id={t.id}
-                                minutes={t.minutes}
-                                trainning_type={t.trainning_type}
-                                weight={t.weight}
-                                user_id={t.user_id}
-
-                            />)
+                    entrenamientos.length > 0 ?
+                        entrenamientos.map(t => (
+                            <div key={t.id} className="trainingList">
+                                <p className="pValores">Minutos: {t.minutes}</p>
+                                <p className="pValores">Tipo entrenamiento: {t.trainning_type}</p>
+                                <p className="pValores">Peso: {t.weight}</p>
+                                <p className="pValores">Usuario: {t.user_id}</p>
+                                <p className="pValores">calorias: {t.calorias}</p>
+                                <span><IoCloseOutline/></span>
+                            </div>
+                        )
                         )
                         :
-                        <p>No tenes entrenamientos todavia {entrenamientos.length}</p>
+                        <p>No tenes entrenamientos todavia</p>
                 }
-            </div>
-            
+            </div >
+
+
         </div>
     )
 }

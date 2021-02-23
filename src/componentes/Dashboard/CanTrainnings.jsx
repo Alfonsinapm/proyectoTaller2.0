@@ -8,7 +8,7 @@ const CanTrainnings = () => {
 
     return (
         <div>
-            <p>La cantidad de entrenamientos es :</p>
+            <p>Cantidad de entrenamientos :</p>
             <p>{entrenamientos.length}</p>
         </div>
     )

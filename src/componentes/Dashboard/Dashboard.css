@@ -58,3 +58,9 @@
 table, td{
     border: solid 1px black;
 }
+
+.pValores{
+    display: inline;
+    border: solid 1px black;
+    padding: 5px;
+}

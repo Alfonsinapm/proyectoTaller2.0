@@ -4,6 +4,7 @@ const initialState = {
     tLogin: "",
     userId: 0,
     idEntrenamiento:0
+    
 }
 
 const reducer = (state = initialState, action) => {
@@ -11,7 +12,7 @@ const reducer = (state = initialState, action) => {
         case 'agregar-training':
             return {
                 ...state,
-                trainings: [...state.trainigs, action.payload]
+                trainigs: [...state.trainigs, action.payload]
             }
         case 'agregar-tokenR':
             return {
@@ -29,6 +30,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state, idEntrenamiento: action.payload
             }
+        
         default: return state;
     }
 }
