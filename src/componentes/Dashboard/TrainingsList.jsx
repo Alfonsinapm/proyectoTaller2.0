@@ -38,7 +38,7 @@ const TrainingsList = () => {
             .then(response => response.json())
             .then(result => {
                 console.log(result)
-                
+
                 dispatch({ type: 'agregar-training', payload: result })
             })
             .catch(error => console.log('error', error));
@@ -53,9 +53,7 @@ const TrainingsList = () => {
         <div>
             <div className="tarjetas">
                 {
-                    entrenamientos.length <= 0 ?
-                        <p>No tenes entrenamientos todavia</p>
-                        :
+                    entrenamientos.length > 0 ?
                         entrenamientos.map(t => (
                             <Titem
                                 key={t.id}
@@ -68,6 +66,8 @@ const TrainingsList = () => {
                             />
                         )
                         )
+                        :
+                        <p>No tenes entrenamientos todavia</p>
                 }
             </div >
         </div>

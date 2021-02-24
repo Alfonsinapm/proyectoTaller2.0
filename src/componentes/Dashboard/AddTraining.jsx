@@ -20,8 +20,6 @@ const AddTraining = () => {
         let minuto = minutoIng.current.value;
         let peso = pesoIng.current.value;
 
-
-
         var myHeaders = new Headers();
         myHeaders.append("Authorization", String(tokenL));
 
@@ -42,26 +40,22 @@ const AddTraining = () => {
             .then(response => response.json())
             .then((result) => {
                 console.log(result)
-                dispatch({ type: 'agregar-cambio', payload: 1 })
 
                 if (entrenamientoId === 11) {
                     dispatch({ type: 'agregar-MinutosR', payload: Number(minuto) })
-                    console.log(MR)
                 }
                 else if (entrenamientoId === 21) {
                     dispatch({ type: 'agregar-MinutosV', payload: Number(minuto) })
-                    console.log(MR)
                 }
-                else{
+                else {
                     dispatch({ type: 'agregar-MinutosP', payload: Number(minuto) })
-                    console.log(MR)
                 }
+
             })
-
-
             .catch((error) => {
                 console.log('error', error);
             });
+        dispatch({ type: 'agregar-cambio', payload: 1 })
     }
 
     return (
