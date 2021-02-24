@@ -8,6 +8,8 @@ const AddTraining = () => {
     const tokenL = useSelector(state => state.tLogin);
     const userId = useSelector(state => state.userId);
     const entrenamientoId = useSelector(state => state.idEntrenamiento);
+    const entrenamientos = useSelector(state => state.trainigs);
+    const MR = Number(useSelector(state => state.MinutosR));
     let dispatch = useDispatch();
 
     const minutoIng = useRef(null);
@@ -42,8 +44,21 @@ const AddTraining = () => {
                 console.log(result)
                 dispatch({ type: 'agregar-cambio', payload: 1 })
 
-            }
-            )
+                if (entrenamientoId === 11) {
+                    dispatch({ type: 'agregar-MinutosR', payload: Number(minuto) })
+                    console.log(MR)
+                }
+                else if (entrenamientoId === 21) {
+                    dispatch({ type: 'agregar-MinutosV', payload: Number(minuto) })
+                    console.log(MR)
+                }
+                else{
+                    dispatch({ type: 'agregar-MinutosP', payload: Number(minuto) })
+                    console.log(MR)
+                }
+            })
+
+
             .catch((error) => {
                 console.log('error', error);
             });

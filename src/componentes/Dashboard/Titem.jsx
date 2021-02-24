@@ -60,6 +60,7 @@ const Titem = ({ minutos, tipoT, peso, usu, cal, id }) => {
             <p className="pValores">{tipoT}</p>
             <p className="pValores">{peso}</p>
             <p className="pValores">{usu}</p>
+            <p className="pValores">{cal}</p>
             <button className="borrarCart col-12 col-md-2" onClick={() => removeItem(id)}><IoCloseOutline className="btnBorrarCart" /></button>
         </div>
     )

@@ -10,14 +10,15 @@ const TrainingsList = () => {
     const cambio = useSelector(state => state.cambio);
     let dispatch = useDispatch();
 
-    const caloriasQuemadas = ( minutos, entrenamientoId) => {
+
+    const caloriasQuemadas = (minutos, entrenamientoId) => {
         let calQuemadas;
         if (entrenamientoId === 11) {
-             calQuemadas = minutos * 5
+            calQuemadas = minutos * 5
         } else if (entrenamientoId === 21) {
-             calQuemadas = minutos * 15
+            calQuemadas = minutos * 15
         } else {
-             calQuemadas = minutos * 20
+            calQuemadas = minutos * 20
         }
         return calQuemadas;
     }
@@ -37,14 +38,16 @@ const TrainingsList = () => {
             .then(response => response.json())
             .then(result => {
                 console.log(result)
+                
                 dispatch({ type: 'agregar-training', payload: result })
             })
             .catch(error => console.log('error', error));
-        }
+    }
 
     useEffect(() => {
         getTrainingsId()
     }, [cambio])
+
 
     return (
         <div>
@@ -58,7 +61,7 @@ const TrainingsList = () => {
                                 tipoT={t.trainning_type}
                                 peso={t.weight}
                                 usu={t.user_id}
-                                cal={caloriasQuemadas(t.minutes,t.trainning_type)}
+                                cal={caloriasQuemadas(t.minutes, t.trainning_type)}
                                 id={t.id}
                             />
                         )

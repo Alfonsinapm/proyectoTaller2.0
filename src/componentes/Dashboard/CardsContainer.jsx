@@ -28,6 +28,7 @@ const CardsContainer = () => {
                     arrayT.push( {id: r.id, name: r.name, completado:true,  calories_per_minute:r.calories_per_minute} )
                 })
                 setTrainings(arrayT)
+                
             })
             .catch(error => console.log('error', error));
     }

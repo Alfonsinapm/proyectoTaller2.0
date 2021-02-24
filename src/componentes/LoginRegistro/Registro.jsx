@@ -19,7 +19,7 @@ const Registro = () => {
         let usu = uIngresado.current.value
         let contra = contIngresada.current.value
         let altura = altIngresada.current.value
-        console.log(usu, contra, altura);
+        console.log(usu, contra);
         let requestOptions = {
             method: 'POST',
             body: JSON.stringify({

@@ -21,7 +21,7 @@ const Login = () => {
 
         var myHeaders = new Headers();
         myHeaders.append("Authorization", String(tokenR));
-        console.log(tokenR)
+        
         var raw = {
             "username": usu,
             "password": contra
