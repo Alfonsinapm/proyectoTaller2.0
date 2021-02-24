@@ -27,10 +27,26 @@ const Titem = ({ minutos, tipoT, peso, usu, cal, id }) => {
             .then(response => response.text())
             .then(result => {
                 console.log(result)
-                
-                
+
+                entrenamientos.forEach(e => {
+                    console.log(e.id)
+                    if (e.id === id) {
+                        if (e.trainning_type === 11) {
+                            dispatch({ type: 'agregar-MinutosR', payload: Number(-minutos) })
+                            
+                        }
+                        else if (e.trainning_type === 21) {
+                            dispatch({ type: 'agregar-MinutosV', payload: Number(-minutos) })
+                            
+                        }
+                        else {
+                            dispatch({ type: 'agregar-MinutosP', payload: Number(-minutos) })
+                            
+                        }
+                    }
+                })
                 const arrayNuevo = entrenamientos.filter(item => item.id !== id)
-                
+
                 arrayNuevo.forEach(r => {
 
                     dispatch({
@@ -39,14 +55,14 @@ const Titem = ({ minutos, tipoT, peso, usu, cal, id }) => {
                             minutes: r.minutes,
                             trainning_type: r.trainning_type,
                             user_id: r.user_id,
-                            weight: r.weight
-                            //calorias:caloriasQuemadas()
+                            weight: r.weight,
+                            calorias:cal
                         }
                     })
                     dispatch({ type: 'agregar-cambio', payload: 1 })
                 })
-                
-                
+
+
             })
             .catch(error => console.log('error', error));
 

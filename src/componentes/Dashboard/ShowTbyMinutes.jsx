@@ -10,8 +10,8 @@ const minP = useSelector(state => state.MinutosP);
 return (
     <div>
         <p>Minutos en resistencia: {minR}</p>
-        <p>Minutos en resistencia: {minV}</p>
-        <p>Minutos en resistencia: {minP}</p>
+        <p>Minutos en velocidad: {minV}</p>
+        <p>Minutos en potencia: {minP}</p>
     </div>
 )
 

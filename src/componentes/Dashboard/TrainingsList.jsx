@@ -53,7 +53,9 @@ const TrainingsList = () => {
         <div>
             <div className="tarjetas">
                 {
-                    entrenamientos.length > 0 ?
+                    entrenamientos.length <= 0 ?
+                        <p>No tenes entrenamientos todavia</p>
+                        :
                         entrenamientos.map(t => (
                             <Titem
                                 key={t.id}
@@ -66,8 +68,6 @@ const TrainingsList = () => {
                             />
                         )
                         )
-                        :
-                        <p>No tenes entrenamientos todavia</p>
                 }
             </div >
         </div>
