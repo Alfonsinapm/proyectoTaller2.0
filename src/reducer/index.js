@@ -3,8 +3,8 @@ const initialState = {
     tRegistro: "",
     tLogin: "",
     userId: 0,
-    idEntrenamiento:0
-    
+    idEntrenamiento:0,
+    cambio:0
 }
 
 const reducer = (state = initialState, action) => {
@@ -12,7 +12,7 @@ const reducer = (state = initialState, action) => {
         case 'agregar-training':
             return {
                 ...state,
-                trainigs: [...state.trainigs, action.payload]
+                trainigs: action.payload
             }
         case 'agregar-tokenR':
             return {
@@ -30,9 +30,20 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state, idEntrenamiento: action.payload
             }
-        
+        case 'agregar-cambio':
+            return {
+                ...state, cambio:state.cambio+ action.payload
+            }
         default: return state;
     }
 }
 
 export default reducer;
+
+
+
+// case 'agregar-training':
+//             return {
+//                 ...state,
+//                 trainigs: [...state.trainigs, action.payload]
+//             }

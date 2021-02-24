@@ -55,12 +55,16 @@
     margin: 20px;
 }
 
-table, td{
+table{
+    border: solid 1px black;
+    border-collapse: collapse;
+}
+th, td{
     border: solid 1px black;
 }
 
 .pValores{
     display: inline;
-    border: solid 1px black;
-    padding: 5px;
+    /*border: solid 1px black;*/
+    padding: 10px;
 }

@@ -18,17 +18,7 @@ const AddTraining = () => {
         let minuto = minutoIng.current.value;
         let peso = pesoIng.current.value;
 
-        const caloriasQuemadas = (entrenamientoId) => {
-            let calQuemadas;
-            if (entrenamientoId === 11) {
-                 calQuemadas = minuto * 5
-            } else if (entrenamientoId === 21) {
-                 calQuemadas = minuto * 15
-            } else {
-                 calQuemadas = minuto * 20
-            }
-            return calQuemadas;
-        }
+
 
         var myHeaders = new Headers();
         myHeaders.append("Authorization", String(tokenL));
@@ -43,7 +33,6 @@ const AddTraining = () => {
             method: 'POST',
             headers: myHeaders,
             body: JSON.stringify(raw),
-
             redirect: 'follow'
         };
 
@@ -51,12 +40,8 @@ const AddTraining = () => {
             .then(response => response.json())
             .then((result) => {
                 console.log(result)
-                dispatch({ type: 'agregar-training', payload: { 
-                    minutes: minuto, 
-                    trainning_type: entrenamientoId, 
-                    user_id: userId, 
-                    weight: peso, 
-                    calorias:caloriasQuemadas(entrenamientoId)} })
+                dispatch({ type: 'agregar-cambio', payload: 1 })
+
             }
             )
             .catch((error) => {
