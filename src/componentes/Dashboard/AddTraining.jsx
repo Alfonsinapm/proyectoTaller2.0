@@ -10,6 +10,7 @@ const AddTraining = () => {
     const entrenamientoId = useSelector(state => state.idEntrenamiento);
     const entrenamientos = useSelector(state => state.trainigs);
     const MR = Number(useSelector(state => state.MinutosR));
+    const altura = (useSelector(state => state.altura));
     let dispatch = useDispatch();
 
     const minutoIng = useRef(null);
@@ -50,6 +51,11 @@ const AddTraining = () => {
                 else {
                     dispatch({ type: 'agregar-MinutosP', payload: Number(minuto) })
                 }
+
+                let imc = peso / (altura * altura);
+                
+                console.log(imc)
+                dispatch({ type: 'agregar-imc', payload: imc })
 
             })
             .catch((error) => {

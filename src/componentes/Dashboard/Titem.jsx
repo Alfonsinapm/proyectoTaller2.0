@@ -24,7 +24,7 @@ const Titem = ({ minutos, tipoT, peso, usu, cal, id }) => {
                 console.log(result)
 
                 entrenamientos.forEach(e => {
-                    console.log(e.id)
+                    
                     if (e.id === id) {
                         if (e.trainning_type === 11) {
                             dispatch({ type: 'agregar-MinutosR', payload: Number(-minutos) })
