@@ -69,7 +69,7 @@ const Registro = () => {
                 <form onSubmit={manejoRegistro} className="registro-form">
                     <input type="email" className="registro-input" ref={uIngresado} placeholder="Usuario" required />
                     <input type="text" className="registro-input" ref={contIngresada} placeholder="Contraseña" required />
-                    <input type="number" className="registro-input" ref={altIngresada} placeholder="Altura    ej: 1.80" />
+                    <input type="number" className="registro-input" ref={altIngresada} placeholder="Altura en cm   ej: 180" />
                     <input type="submit" className="btn-registro-login" value="registrarme" required />
                 </form>
                 {msjErrorReg ? <p className="msjError">No se pudo hacer el registro, intente nuevamente más tarde</p> : null}
@@ -80,3 +80,5 @@ const Registro = () => {
 }
 
 export default Registro
+
+

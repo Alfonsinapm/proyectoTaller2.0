@@ -7,7 +7,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import ShowTbyMinutes from './ShowTbyMinutes'
 import Imc from './Imc'
 import Weight from './Weight'
-import Mensajes from './Mensajes'    
+import Mensajes from './Mensajes' 
+import MinutesChart from './MinutesChart'   
 
 const DashboardContainer = () => {
     const [entIngresados, setTrainings] = useState([])
@@ -23,11 +24,12 @@ const DashboardContainer = () => {
     return (
         <div className = "dashContainer">
             <h1 className="dashboard-title">Dashboard</h1>
+            
             <AddTraining/>
             <CantTrainnings/>
             <ShowTbyMinutes/>
-            <TrainingList />
-            <Mensajes/>
+            {/*<Mensajes/> */}<TrainingList />
+            <MinutesChart/>
             <Imc/>
             <Weight/>
             

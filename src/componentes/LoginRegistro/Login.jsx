@@ -21,7 +21,7 @@ const Login = () => {
 
         var myHeaders = new Headers();
         myHeaders.append("Authorization", String(tokenR));
-        
+
         var raw = {
             "username": usu,
             "password": contra
@@ -38,16 +38,16 @@ const Login = () => {
             .then(result => {
                 console.log(result)
                 if (result.id !== undefined) {
-                dispatch({ type: 'agregar-tokenL', payload: result.token })
-                history.push('/dashboard');
-                }else{
+                    dispatch({ type: 'agregar-tokenL', payload: result.token })
+                    history.push('/dashboard');
+                } else {
                     setMsjErrorLog(true)
                 }
             }
             )
             .catch((error) => {
                 console.log('error', error)
-                
+
             })
     }
 
@@ -68,3 +68,5 @@ const Login = () => {
 }
 
 export default Login
+
+

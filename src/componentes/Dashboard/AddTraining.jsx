@@ -51,11 +51,13 @@ const AddTraining = () => {
                 else {
                     dispatch({ type: 'agregar-MinutosP', payload: Number(minuto) })
                 }
-
-                let imc = peso / (altura * altura);
                 
-                console.log(imc)
-                dispatch({ type: 'agregar-imc', payload: imc })
+                let imc = peso / (altura * altura);
+                let imcRound = imc.toFixed(2)
+                entrenamientos.forEach(e => {
+                    dispatch({ type: 'agregar-imc', payload: { idT: e.id, imc: imcRound } })
+                });
+                
 
             })
             .catch((error) => {

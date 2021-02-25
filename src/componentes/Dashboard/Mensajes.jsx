@@ -1,23 +1,27 @@
 import { useSelector } from 'react-redux'
 
 const Mensajes = () => {
+  let mensaje;
+  const entrenamientos = useSelector(state => state.trainigs);
+  const imc = useSelector(state => state.imc);
 
-    const imc = useSelector(state => state.imc);
-    
-    let mensaje;
-    if (imc < 18.5) {
-        mensaje='Bajo peso';
-      } else if (imc < 25) {
-        mensaje='Peso normal';
-      } else {
-        mensaje='Sobre peso';
-      }
+  for (let i = imc.length; i = imc.length; i++) {
+    let ultimaIMC = i;
+    if (ultimaIMC < 18.5) {
+      mensaje = 'Bajo peso';
+    } else if (ultimaIMC < 25) {
+      mensaje = 'Peso normal';
+    } else {
+      mensaje = 'Sobre peso';
+    }
+  }
 
-    return (
-        <div>
-            <p>{mensaje}</p>
-        </div>
-    )
+
+  return (
+    <div>
+      <p>{mensaje}</p>
+    </div>
+  )
 }
 
 export default Mensajes
