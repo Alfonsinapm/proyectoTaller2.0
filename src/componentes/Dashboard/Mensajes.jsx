@@ -5,8 +5,8 @@ const Mensajes = () => {
   const entrenamientos = useSelector(state => state.trainigs);
   const imc = useSelector(state => state.imc);
 
-  for (let i = imc.length; i = imc.length; i++) {
-    let ultimaIMC = i;
+  for (let i = 0; i < imc.length; i++) {
+    let ultimaIMC = imc[i];
     if (ultimaIMC < 18.5) {
       mensaje = 'Bajo peso';
     } else if (ultimaIMC < 25) {
@@ -17,9 +17,13 @@ const Mensajes = () => {
   }
 
 
+
+
+
   return (
     <div>
-      <p>{mensaje}</p>
+      {entrenamientos.length>0?<p>{mensaje}</p>:<p>Agrega entrenamientos para conocer tu estado de salud</p>}
+      
     </div>
   )
 }

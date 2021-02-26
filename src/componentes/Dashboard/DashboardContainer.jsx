@@ -16,7 +16,9 @@ const DashboardContainer = () => {
             <AddTraining/>
             <CantTrainnings/>
             <ShowTbyMinutes/>
-            {/*<Mensajes/> <Weight/>   */}
+            {/*    */}
+            <Mensajes/>
+            <Weight/>
             <TrainingList />
             <MinutesChart/>
             <Imc/>

@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import { Line } from 'react-chartjs-2'
-import { useState } from 'react'
+
 
 const Imc = () => {
 

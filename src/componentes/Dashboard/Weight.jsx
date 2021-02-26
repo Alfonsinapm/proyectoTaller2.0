@@ -7,20 +7,18 @@ const Weight = () => {
     
     let dispatch = useDispatch();
 
+    for (let i = 0; i < entrenamientos.length-1; i++) {
 
-    // for (let i = entrenamientos.length; i >= entrenamientos.length-1; i--) {
-    //     console.log(entrenamientos.length)
-    //     let p1 = i[entrenamientos.length];
-    //     dispatch({ type: 'agregar-peso1', payload: p1 })
-    //     let p2 = i[entrenamientos.length- 1]
-    //     dispatch({ type: 'agregar-peso2', payload: p2 })
-    // }
-
+        let p2 = entrenamientos[i].weight;
+        let p1 = entrenamientos[i+ 1].weight
+        dispatch({ type: 'agregar-peso1', payload: p1 })
+        dispatch({ type: 'agregar-peso2', payload: p2 })
+    }
 
     return (
         <div>
             { 
-            entrenamientos.length>=2? 
+            entrenamientos.length>=1? 
             <div>
             <p>Penúltimo peso: {peso1}</p>
             <p>Último peso: {peso2}</p>
