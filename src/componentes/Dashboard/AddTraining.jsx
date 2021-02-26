@@ -9,7 +9,8 @@ const AddTraining = () => {
     const userId = useSelector(state => state.userId);
     const entrenamientoId = useSelector(state => state.idEntrenamiento);
     const entrenamientos = useSelector(state => state.trainigs);
-    const MR = Number(useSelector(state => state.MinutosR));
+    //const MR = Number(useSelector(state => state.MinutosR));
+    //let imcR = useSelector(state => state.imc);
     const altura = (useSelector(state => state.altura));
     let dispatch = useDispatch();
 
@@ -41,23 +42,34 @@ const AddTraining = () => {
             .then(response => response.json())
             .then((result) => {
                 console.log(result)
+                if (result.status === 200) {
+                    let arrayImc =[];
+                    //ACUMULAR MINUTOS
+                    if (entrenamientoId === 11) {
+                        dispatch({ type: 'agregar-MinutosR', payload: Number(minuto) })
+                    }
+                    else if (entrenamientoId === 21) {
+                        dispatch({ type: 'agregar-MinutosV', payload: Number(minuto) })
+                    }
+                    else {
+                        dispatch({ type: 'agregar-MinutosP', payload: Number(minuto) })
+                    }
+                    //CALCULO IMC
+                    let imc = peso / (altura * altura);
+                    let imcRound = imc.toFixed(2)
 
-                if (entrenamientoId === 11) {
-                    dispatch({ type: 'agregar-MinutosR', payload: Number(minuto) })
+                    entrenamientos.forEach(e => {
+                        arrayImc.push({
+                            idT: e.id,
+                            imc: imcRound
+                        }) 
+                    });
+                    console.log(arrayImc)
+                    dispatch({type: 'agregar-imc', payload: arrayImc})
+
                 }
-                else if (entrenamientoId === 21) {
-                    dispatch({ type: 'agregar-MinutosV', payload: Number(minuto) })
-                }
-                else {
-                    dispatch({ type: 'agregar-MinutosP', payload: Number(minuto) })
-                }
-                
-                let imc = peso / (altura * altura);
-                let imcRound = imc.toFixed(2)
-                entrenamientos.forEach(e => {
-                    dispatch({ type: 'agregar-imc', payload: { idT: e.id, imc: imcRound } })
-                });
-                
+
+
 
             })
             .catch((error) => {

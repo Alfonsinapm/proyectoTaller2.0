@@ -64,7 +64,7 @@ const reducer = (state = initialState, action) => {
         case 'agregar-imc':
             return {
                 ...state,
-                imc: [...state.imc, action.payload]
+                imc: action.payload
             }
         case 'agregar-peso1':
             return {

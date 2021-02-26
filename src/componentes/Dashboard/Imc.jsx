@@ -1,11 +1,12 @@
 import { useSelector } from 'react-redux'
 import { Line } from 'react-chartjs-2'
+import { useState } from 'react'
 
 const Imc = () => {
 
     const imc = useSelector(state => state.imc);
     const entrenamientos = useSelector(state => state.trainigs);
-
+console.log(imc);
     const data = {
         labels: [imc.map(i => i.imc)],
         datasets: [
@@ -28,7 +29,7 @@ const Imc = () => {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: imc.map(i => i.imc)
+            data: imc.forEach(i => i.imc)
           }
         ]
       };

@@ -7,6 +7,7 @@ const Titem = ({ minutos, tipoT, peso, usu, cal, id }) => {
     const entrenamientos = useSelector(state => state.trainigs);
     const userId = useSelector(state => state.userId);
     const tokenL = useSelector(state => state.tLogin);
+    const imc = useSelector(state => state.imc);
 
     const removeItem = (id) => {
         var myHeaders = new Headers();
@@ -22,9 +23,8 @@ const Titem = ({ minutos, tipoT, peso, usu, cal, id }) => {
             .then(response => response.text())
             .then(result => {
                 console.log(result)
-
+                //RESTAR MINUTOS BORRADOS
                 entrenamientos.forEach(e => {
-                    
                     if (e.id === id) {
                         if (e.trainning_type === 11) {
                             dispatch({ type: 'agregar-MinutosR', payload: Number(-minutos) })
@@ -36,8 +36,18 @@ const Titem = ({ minutos, tipoT, peso, usu, cal, id }) => {
                             dispatch({ type: 'agregar-MinutosP', payload: Number(-minutos) })
                         }
                     }
+                    //DISPARAR CAMBIO QUE VUELVA A RENDERIZAR ENTRENAMIENTOS
                     dispatch({ type: 'agregar-cambio', payload: 1 }) 
                 })
+
+                //ACTUALIZAR IMC
+                
+                let arrayImcNuevo = imc.filter(i => i.idT !== id)
+                dispatch({type: 'agregar-imc', payload: arrayImcNuevo})
+                
+
+                //ACTUALIZAR ENTRENAMIENTOS
+                
                 const arrayNuevo = entrenamientos.filter(item => item.id !== id)
                 arrayNuevo.forEach(r => {
                    
@@ -50,7 +60,6 @@ const Titem = ({ minutos, tipoT, peso, usu, cal, id }) => {
                             weight: r.weight,
                         }
                     })
-                    
                 })
             })
             .catch(error => console.log('error', error));
@@ -66,6 +75,7 @@ const Titem = ({ minutos, tipoT, peso, usu, cal, id }) => {
             <p className="pValores">USUARIO: {usu}</p>
             <p className="pValores">CALORIAS QUEMADAS: {cal}</p>
             <button className="borrarCart" onClick={() => removeItem(id)}><IoCloseOutline className="btnBorrarCart" /></button>
+               
         </div>
     )
 }
