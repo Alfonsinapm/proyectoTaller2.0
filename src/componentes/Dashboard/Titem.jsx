@@ -1,5 +1,13 @@
 import { IoCloseOutline } from "react-icons/io5";
 import { useSelector, useDispatch } from 'react-redux';
+import { FaUser } from "react-icons/fa";
+import { BiTime } from "react-icons/bi";
+import { BsTextareaT } from "react-icons/bs";
+import { FaBalanceScaleRight } from "react-icons/fa";
+import { BiRun } from "react-icons/bi";
+import { GiBiceps } from "react-icons/gi";
+
+
 
 const Titem = ({ minutos, tipoT, peso, usu, cal, id }) => {
 
@@ -7,7 +15,7 @@ const Titem = ({ minutos, tipoT, peso, usu, cal, id }) => {
     const entrenamientos = useSelector(state => state.trainigs);
     const userId = useSelector(state => state.userId);
     const tokenL = useSelector(state => state.tLogin);
-    const imc = useSelector(state => state.imc);
+
 
     const removeItem = (id) => {
         var myHeaders = new Headers();
@@ -37,45 +45,47 @@ const Titem = ({ minutos, tipoT, peso, usu, cal, id }) => {
                         }
                     }
                     //DISPARAR CAMBIO QUE VUELVA A RENDERIZAR ENTRENAMIENTOS
-                    dispatch({ type: 'agregar-cambio', payload: 1 }) 
+                    //dispatch({ type: 'agregar-cambio', payload: 1 }) 
                 })
-
-                //ACTUALIZAR IMC
-                
-                let arrayImcNuevo = imc.filter(i => i.idT !== id)
-                dispatch({type: 'agregar-imc', payload: arrayImcNuevo})
-                
 
                 //ACTUALIZAR ENTRENAMIENTOS
-                
+
                 const arrayNuevo = entrenamientos.filter(item => item.id !== id)
-                arrayNuevo.forEach(r => {
-                   
-                    dispatch({
-                        type: 'agregar-training', payload: {
-                            id: r.id,
-                            minutes: r.minutes,
-                            trainning_type: r.trainning_type,
-                            user_id: r.user_id,
-                            weight: r.weight,
-                        }
-                    })
-                })
+                dispatch({ type: 'agregar-training', payload: arrayNuevo })
             })
             .catch(error => console.log('error', error));
-        
     }
 
     return (
         <div>
-            <p className="pValores">ID: {id}</p>
-            <p className="pValores">MINUTOS: {minutos}</p>
-            <p className="pValores">TIPO ENTRENAMIENTO: {tipoT}</p>
-            <p className="pValores">PESO: {peso}</p>
-            <p className="pValores">USUARIO: {usu}</p>
-            <p className="pValores">CALORIAS QUEMADAS: {cal}</p>
+            <p className="pValores"><BiRun /> {id}</p>
+            <p className="pValores"><BiTime /> {minutos}</p>
+            <p className="pValores"><BsTextareaT /> {tipoT}</p>
+            <p className="pValores"><FaBalanceScaleRight /> {peso}</p>
+            <p className="pValores"><FaUser /> {usu}</p>
+            <p className="pValores"><GiBiceps/> Calorias {cal}</p>
             <button className="borrarCart" onClick={() => removeItem(id)}><IoCloseOutline className="btnBorrarCart" /></button>
-               
+
+            {/* <table>
+                <tbody>
+                    <tr><td>ID</td>
+                        <td>MINUTOS</td>
+                        <td>TIPO ENTRENAMIENTO</td>
+                        <td>PESO</td>
+                        <td>USUARIO</td>
+                        <td>CALORIAS QUEMADAS</td>
+                        <td></td>
+                    </tr>
+
+                    <tr><td>{id}</td>
+                        <td>{minutos}</td>
+                        <td>{tipoT}</td>
+                        <td>{peso}</td>
+                        <td>{usu}</td>
+                        <td>{cal}</td>
+                        <td><button className="borrarCart" onClick={() => removeItem(id)}><IoCloseOutline className="btnBorrarCart" /></button></td></tr>
+                </tbody>
+            </table> */}
         </div>
     )
 }

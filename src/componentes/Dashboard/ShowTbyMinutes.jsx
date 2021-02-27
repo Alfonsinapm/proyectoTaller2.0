@@ -8,10 +8,13 @@ const minV = useSelector(state => state.MinutosV);
 const minP = useSelector(state => state.MinutosP);
 
 return (
-    <div>
-        <p>Minutos en resistencia: {minR}</p>
-        <p>Minutos en velocidad: {minV}</p>
-        <p>Minutos en potencia: {minP}</p>
+    <div className="minutos-contenedor">
+        <p>Minutos en resistencia</p>
+        <p>{minR}</p>
+        <p>Minutos en velocidad</p>
+        <p>{minV}</p>
+        <p>Minutos en potencia</p>
+        <p>{minP}</p>
     </div>
 )
 

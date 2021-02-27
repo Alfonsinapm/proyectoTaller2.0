@@ -7,9 +7,9 @@ const CanTrainnings = () => {
     const entrenamientos = useSelector(state => state.trainigs);
 
     return (
-        <div>
-            <p>Cantidad de entrenamientos :</p>
+        <div className="cantE-contenedor">
             <p>{entrenamientos.length}</p>
+            <p>Entrenamientos</p>
         </div>
     )
 }

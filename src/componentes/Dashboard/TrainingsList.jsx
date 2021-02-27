@@ -23,35 +23,9 @@ const TrainingsList = () => {
         return calQuemadas;
     }
 
-    const getTrainingsId = () => {
-
-        var myHeaders = new Headers();
-        myHeaders.append("Authorization", String(tokenL));
-
-        var requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
-
-        fetch(`https://trainning-rest-api.herokuapp.com/v1/users/${userId}/trainings`, requestOptions)
-            .then(response => response.json())
-            .then(result => {
-                console.log(result)
-
-                dispatch({ type: 'agregar-training', payload: result })
-            })
-            .catch(error => console.log('error', error));
-    }
-
-    useEffect(() => {
-        getTrainingsId()
-    }, [cambio])
-
-
     return (
         <div>
-            <div className="tarjetas">
+            <div className="entren">
                 {
                     entrenamientos.length > 0 ?
                         entrenamientos.map(t => (

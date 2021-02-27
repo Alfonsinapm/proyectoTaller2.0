@@ -31,8 +31,8 @@ const MinutesChart = () => {
     };
 
     return (
-        <div>
-            <h2>Entrenamientos por tipo</h2>
+        <div className="grafica-minutos">
+            
             {entrenamientos.length>0?<Doughnut data={data} />:<p>Agrega entrenamientos para ver grafica</p>}
         </div>
     )

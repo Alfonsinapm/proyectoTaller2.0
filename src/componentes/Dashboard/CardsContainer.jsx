@@ -22,7 +22,7 @@ const CardsContainer = () => {
         fetch("https://trainning-rest-api.herokuapp.com/v1/training-types", requestOptions)
             .then(response => response.json())
             .then(result => {
-                //console.log(result)
+                console.log(result)
                 let arrayT = []
                 result.forEach(r => {
                     arrayT.push( {id: r.id, name: r.name, completado:true,  calories_per_minute:r.calories_per_minute} )

@@ -1,7 +1,7 @@
 import './Dashboard.css'
 import { useSelector, useDispatch } from 'react-redux'
 import CardsContainer from './CardsContainer'
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 
 const AddTraining = () => {
 
@@ -9,22 +9,39 @@ const AddTraining = () => {
     const userId = useSelector(state => state.userId);
     const entrenamientoId = useSelector(state => state.idEntrenamiento);
     const entrenamientos = useSelector(state => state.trainigs);
-    //const MR = Number(useSelector(state => state.MinutosR));
-    //let imcR = useSelector(state => state.imc);
+    const MR = Number(useSelector(state => state.MinutosR));
+    const MP = Number(useSelector(state => state.MinutosP));
+    const MV = Number(useSelector(state => state.MinutosV));
+
     const altura = (useSelector(state => state.altura));
     let dispatch = useDispatch();
 
     const minutoIng = useRef(null);
     const pesoIng = useRef(null);
 
+    const getTrainingsId = () => {
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", String(tokenL));
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+        fetch(`https://trainning-rest-api.herokuapp.com/v1/users/${userId}/trainings`, requestOptions)
+            .then(response => response.json())
+            .then(result2 => {
+                console.log(result2)
+                dispatch({ type: 'agregar-training', payload: result2 })
+            })
+            .catch(error => console.log('error', error));
+    }
+
     const handleAddT = (e) => {
         e.preventDefault();
         let minuto = minutoIng.current.value;
         let peso = pesoIng.current.value;
-
         var myHeaders = new Headers();
         myHeaders.append("Authorization", String(tokenL));
-
         var raw = {
             "minutes": Number(minuto),
             "trainning_type": Number(entrenamientoId),
@@ -43,7 +60,6 @@ const AddTraining = () => {
             .then((result) => {
                 console.log(result)
                 if (result.status === 200) {
-                    let arrayImc =[];
                     //ACUMULAR MINUTOS
                     if (entrenamientoId === 11) {
                         dispatch({ type: 'agregar-MinutosR', payload: Number(minuto) })
@@ -54,29 +70,15 @@ const AddTraining = () => {
                     else {
                         dispatch({ type: 'agregar-MinutosP', payload: Number(minuto) })
                     }
-                    //CALCULO IMC
-                    let imc = peso / (altura * altura);
-                    let imcRound = imc.toFixed(2)
-
-                    entrenamientos.forEach(e => {
-                        arrayImc.push({
-                            idT: e.id,
-                            imc: imcRound
-                        }) 
-                    });
-                    console.log(arrayImc)
-                    dispatch({type: 'agregar-imc', payload: arrayImc})
-
+                    getTrainingsId()
                 }
-
-
-
             })
             .catch((error) => {
                 console.log('error', error);
             });
-        dispatch({ type: 'agregar-cambio', payload: 1 })
+
     }
+
 
     return (
         <form className="agregar" onSubmit={handleAddT} >

@@ -3,10 +3,12 @@ import { useSelector } from 'react-redux'
 const Mensajes = () => {
   let mensaje;
   const entrenamientos = useSelector(state => state.trainigs);
-  const imc = useSelector(state => state.imc);
+  const altura = useSelector(state => state.altura);
 
-  for (let i = 0; i < imc.length; i++) {
-    let ultimaIMC = imc[i];
+  for (let i = 0; i < entrenamientos.length; i++) {
+
+    let ultimaIMC = (entrenamientos[i].weight)/(altura*altura);
+    
     if (ultimaIMC < 18.5) {
       mensaje = 'Bajo peso';
     } else if (ultimaIMC < 25) {

@@ -8,7 +8,6 @@ const initialState = {
     MinutosR: 0,
     MinutosV: 0,
     MinutosP: 0,
-    imc: [],
     Peso1: 0,
     Peso2: 0,
     altura: 0
@@ -60,11 +59,6 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 MinutosP: state.MinutosP + action.payload
-            }
-        case 'agregar-imc':
-            return {
-                ...state,
-                imc: action.payload
             }
         case 'agregar-peso1':
             return {
